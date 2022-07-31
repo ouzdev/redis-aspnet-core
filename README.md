@@ -125,7 +125,7 @@ customerList = await context.Customers.ToListAsync();
 
 Burada redise cache i gönderirken ilgili data `GetBytes()` metodu ile encoding edildikten sonra `DistributedCacheEntryOptions` sınıfında bir nesne newlenerek ilgili expiration değerleri belirlenir.
 
-Önem
+Önemli
 
 > ***SetAbsoluteExpiration**, Kesinlik belirtir. Verilen süre içerisinde cache bozulup gelen bir sonraki istekte yeniden cache devreye girecektir.*
 > 
