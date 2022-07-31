@@ -1,12 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+using redis_aspnet_core.Models;
+
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddDbContext<AppDbContext>(opt => { opt.UseInMemoryDatabase(databaseName: "demoDb"); });
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = builder.Configuration.GetSection("RedisConfiguration:Host").Value;
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
